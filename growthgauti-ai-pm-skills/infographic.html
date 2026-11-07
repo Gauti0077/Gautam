@@ -1,0 +1,89 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Arvo:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#ccc}
+#c{width:1080px;height:1350px;position:relative;overflow:hidden;
+  background:radial-gradient(ellipse at 30% 40%,#fbfcf6 0%,#eef2e6 45%,#dfe6d6 100%);font-family:'Arvo',serif;color:#1d2a1f}
+svg.bg,svg.bars{position:absolute;inset:0}
+.title{position:absolute;left:24px;top:26px;font-family:'Bebas Neue',sans-serif;color:#1f2a22;line-height:.9;letter-spacing:.5px}
+.title .l1{font-size:80px;white-space:nowrap}
+.title .box{background:#1f2a22;color:#f4f7ee;padding:4px 14px 0;margin-left:8px}
+.title .l2{font-size:84px;margin-top:12px}
+.badge{position:absolute;right:28px;top:162px;background:rgba(255,255,255,.88);border-radius:22px;padding:12px 22px 12px 12px;display:flex;align-items:center;gap:14px;box-shadow:0 4px 18px rgba(30,60,30,.15)}
+.badge .av{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,#2e8b5e,#b8d65a);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue';font-size:38px;color:#fff;padding-top:4px}
+.badge .n{font-weight:700;font-size:26px}
+.badge .h{font-size:19px;color:#4b5a4c}
+.lab{position:absolute;display:flex;align-items:center;gap:8px}
+.lab .ic{width:40px;height:40px;flex:none;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;font-size:22px;font-family:'Noto Color Emoji';box-shadow:0 1px 4px rgba(0,0,0,.12)}
+.lab .tx{background:rgba(255,255,255,.88);padding:5px 9px;font-size:20.5px;line-height:1.08;border-radius:3px}
+.pct{position:absolute;color:#fff;font-family:'Arvo';font-size:19px;text-align:center;width:82px;text-shadow:0 1px 2px rgba(0,0,0,.2)}
+.foot{position:absolute;right:26px;bottom:20px;font-size:18px;color:#3d4d3f;background:rgba(255,255,255,.7);padding:6px 12px;border-radius:14px}
+</style></head><body>
+<div id="c">
+  <svg class="bg" width="1080" height="1350" id="bg"></svg>
+  <svg class="bars" width="1080" height="1350" id="bars"></svg>
+  <div class="title"><div class="l1">TOP SKILLS<span class="box">EVERY AI PRODUCT MANAGER</span></div><div class="l2">MUST HAVE IN 2026-27</div></div>
+  <div class="badge"><div class="av">GG</div><div><div class="n">Growth Gauti</div><div class="h">@growthgauti</div></div></div>
+  <div class="foot">💾 Save this · Follow @growthgauti</div>
+</div>
+<script>
+const skills=[
+ ["🧠","AI & GenAI Fundamentals",78],
+ ["👥","Customer & User Understanding",72],
+ ["🗺️","Product Strategy &<br>Roadmapping",68],
+ ["📊","Data Literacy",63],
+ ["✨","Prompting & AI Tooling",58],
+ ["🤝","Stakeholder<br>Management",54],
+ ["🎤","Communication & Storytelling",49],
+ ["💡","Problem Solving &<br>Critical Thinking",45],
+ ["🔗","Cross-functional Collaboration",41],
+ ["🧪","Product Analytics<br>& Experimentation",37],
+ ["⚖️","Responsible AI & Ethics",33],
+ ["⏱️","Execution &<br>Delivery",29],
+ ["💼","Business Acumen",25],
+ ["🚀","Adaptability &amp;<br>Continuous Learning",21],
+ ["🎯","Domain Knowledge<br>(Industry /<br>Use Case)",18]
+];
+const NS="http://www.w3.org/2000/svg",bars=document.getElementById('bars'),c=document.getElementById('c');
+function el(t,a,p=bars){const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);p.appendChild(e);return e}
+const defs=el('defs',{});
+[["L","#9fc24a","#c4dd6a","#a9c94f"],["D","#1f7a52","#3f9f6e","#26855a"]].forEach(([id,a,b,d])=>{
+  const g=el('linearGradient',{id:'g'+id,x1:0,x2:1,y1:0,y2:0},defs);
+  el('stop',{offset:'0',  'stop-color':a},g);el('stop',{offset:'.45','stop-color':b},g);el('stop',{offset:'1','stop-color':d},g);
+  const t=el('linearGradient',{id:'t'+id,x1:0,x2:0,y1:0,y2:1},defs);
+  el('stop',{offset:'0','stop-color':b},t);el('stop',{offset:'1','stop-color':a},t);
+});
+const n=skills.length,W=82,R=W/2,RY=13,X0=24,DX=48,T0=282,DT=61,B0=1110,DB=10;
+skills.forEach(([ic,name,p],i)=>{
+  const x=X0+i*DX,top=T0+i*DT,bot=B0+i*DB,k=i%2?'D':'L';
+  // shadow
+  el('ellipse',{cx:x+R+6,cy:bot+6,rx:R+4,ry:RY,fill:'rgba(30,50,30,.18)'});
+  el('path',{d:`M${x},${top} L${x},${bot} A${R},${RY} 0 0 0 ${x+W},${bot} L${x+W},${top} Z`,fill:`url(#g${k})`});
+  el('ellipse',{cx:x+R,cy:top,rx:R,ry:RY,fill:`url(#t${k})`,stroke:'rgba(255,255,255,.35)','stroke-width':1});
+  const pc=document.createElement('div');pc.className='pct';pc.style.left=x+'px';pc.style.top=(top+28)+'px';pc.textContent=p+'%';c.appendChild(pc);
+  // label
+  const lx=Math.min(X0+DX*(i+1)+W+18,800), ly=top-6+(i==n-1?22:0);
+  el('line',{x1:x+W,y1:ly,x2:lx-4,y2:ly,stroke:'#2b3a2d','stroke-width':2,'stroke-dasharray':'5 4'});
+  el('circle',{cx:lx-4,cy:ly,r:4,fill:'#2b3a2d'});
+  const lb=document.createElement('div');lb.className='lab';
+  lb.innerHTML=`<span class="ic">${ic}</span><span class="tx">${name}</span>`;
+  lb.style.left=(lx+4)+'px';lb.style.top=ly+'px';lb.style.maxWidth=(1074-lx)+'px';
+  c.appendChild(lb);requestAnimationFrame(()=>lb.style.transform='translateY(-50%)');lb.style.transform='translateY(-50%)';
+});
+// bamboo leaves background
+const bg=document.getElementById('bg');
+function leaf(x,y,len,ang,op){const g=el('g',{transform:`translate(${x},${y}) rotate(${ang})`,opacity:op},bg);
+  el('path',{d:`M0,0 Q${len*.45},-${len*.11} ${len},0 Q${len*.45},${len*.11} 0,0Z`,fill:'#6f8f5e'},g);
+  el('path',{d:`M0,0 L${len*.95},0`,stroke:'#55744a','stroke-width':1.2},g);}
+// stalks
+[[880,0,1350,10],[1010,0,1350,7],[960,500,1350,5]].forEach(([x,y1,y2,w])=>{
+  el('line',{x1:x,y1:y1,x2:x-30,y2:y2,stroke:'#9db08c','stroke-width':w,opacity:.35},bg);
+  for(let y=y1+120;y<y2;y+=170)el('line',{x1:x-((y-y1)/(y2-y1))*30-w,y1:y,x2:x-((y-y1)/(y2-y1))*30+w,y2:y,stroke:'#7f9670','stroke-width':3,opacity:.35},bg);
+});
+[[800,250,170,155,.22],[820,260,150,195,.2],[840,265,160,120,.18],[960,330,190,140,.2],[970,340,170,200,.16],
+ [990,560,180,165,.18],[1000,570,150,215,.15],[700,40,160,150,.2],[720,45,140,30,.16],[150,1260,170,-20,.14],
+ [180,1270,150,-60,.12],[960,880,180,150,.14],[980,890,150,210,.12],[640,1200,140,-30,.1]].forEach(a=>leaf(...a));
+</script>
+</body></html>
